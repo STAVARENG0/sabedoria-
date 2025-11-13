@@ -458,6 +458,121 @@
       width: 100%;
       height: auto;
     }
+
+    /* CARD DA PROMOÇÃO + CONTADOR */
+    .promo-card{
+      margin:26px 0 10px;
+      padding:22px 20px 20px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(230,201,144,.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(202,168,106,.22), transparent 55%),
+        #111114;
+      border:1px solid rgba(202,168,106,.7);
+      box-shadow:0 26px 70px rgba(0,0,0,.85);
+    }
+    .promo-card-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(202,168,106,.6);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1.3px;
+      color:var(--gold-2);
+      margin-bottom:10px;
+    }
+    .promo-card-badge-dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:var(--gold-2);
+      box-shadow:0 0 10px rgba(202,168,106,.8);
+    }
+    .promo-card h2{
+      margin:0 0 8px;
+      font-size:20px;
+      font-weight:700;
+      color:#fff;
+    }
+    .promo-prices{
+      margin:10px 0 6px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+    }
+    .promo-old{
+      font-size:20px;
+      color:var(--muted);
+      text-decoration:line-through;
+      text-decoration-thickness:3px;
+      text-decoration-color:rgba(255,80,80,.9);
+      font-weight:500;
+    }
+    .promo-new{
+      font-size:34px;
+      font-weight:700;
+      letter-spacing:1px;
+      background:linear-gradient(135deg,#fff,var(--gold-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .promo-new span{
+      font-size:14px;
+      font-weight:500;
+      color:var(--gold-2);
+      display:block;
+      margin-top:2px;
+    }
+    .promo-note{
+      margin:6px 0 12px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .countdown{
+      margin:6px auto 14px;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .countdown > p{
+      margin:0 0 6px;
+    }
+    .countdown-grid{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .count-box{
+      min-width:58px;
+      padding:6px 6px 4px;
+      border-radius:12px;
+      border:1px solid rgba(202,168,106,.6);
+      background:radial-gradient(circle at 0% 0%, rgba(230,201,144,.18), transparent 60%),
+                 rgba(8,8,10,.85);
+      box-shadow:0 10px 26px rgba(0,0,0,.8);
+    }
+    .count-number{
+      display:block;
+      font-size:16px;
+      font-weight:600;
+      color:var(--gold-2);
+      letter-spacing:1px;
+    }
+    .count-label{
+      display:block;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:1.3px;
+      color:var(--muted);
+      margin-top:1px;
+    }
+
 </style>
 </head>
 <body>
@@ -583,6 +698,46 @@
     </div>
   </section>
 
+
+  <!-- CARD DE PROMOÇÃO + CONTADOR NO FINAL -->
+  <section class="promo-card card" aria-label="Promoção especial">
+    <div class="promo-card-badge">
+      <span class="promo-card-badge-dot"></span>
+      PROMOÇÃO ATÉ 20/11/2025
+    </div>
+    <h2>De R$ 369,00 por um valor especial hoje</h2>
+    <div class="promo-prices">
+      <div class="promo-old">R$ 369,00</div>
+      <div class="promo-new">
+        R$ 127,00
+        <span>à vista, acesso completo ao método</span>
+      </div>
+    </div>
+    <p class="promo-note">Válido até 20/11/2025 ou enquanto durar a condição especial.</p>
+    <div class="countdown" aria-label="Contador regressivo da promoção">
+      <p>Oferta termina em:</p>
+      <div class="countdown-grid" id="countdown-timer">
+        <div class="count-box">
+          <span class="count-number" data-unit="d">00</span>
+          <span class="count-label">dias</span>
+        </div>
+        <div class="count-box">
+          <span class="count-number" data-unit="h">00</span>
+          <span class="count-label">horas</span>
+        </div>
+        <div class="count-box">
+          <span class="count-number" data-unit="m">00</span>
+          <span class="count-label">min</span>
+        </div>
+        <div class="count-box">
+          <span class="count-number" data-unit="s">00</span>
+          <span class="count-label">seg</span>
+        </div>
+      </div>
+    </div>
+    <a class="cta" href="#" id="btn-adquirir-promo">ADQUIRIR SABEDORIA</a>
+  </section>
+
   <footer>
     <div>© <span id="year"></span> SABEDORIA ONLINE. Todos os direitos reservados.</div>
     <div aria-label="Links de rodapé" class="footer-links" role="navigation">
@@ -627,6 +782,52 @@
       modal?.parentNode?.removeChild(modal);
     }
   } catch(e){}
+
+  
+  // Contador regressivo da promoção até 20/11/2025 23:59:59
+  (function(){
+    const container = document.getElementById('countdown-timer');
+    if (!container) return;
+
+    const map = {
+      d: container.querySelector('[data-unit="d"]'),
+      h: container.querySelector('[data-unit="h"]'),
+      m: container.querySelector('[data-unit="m"]'),
+      s: container.querySelector('[data-unit="s"]')
+    };
+
+    const target = new Date('2025-11-20T23:59:59').getTime();
+
+    function updateCountdown(){
+      const now = new Date().getTime();
+      let diff = target - now;
+
+      if (diff <= 0){
+        container.innerHTML = '<div style="width:100%;text-align:center;font-size:14px;color:#b7b7b7;">Promoção encerrada</div>';
+        clearInterval(intervalId);
+        return;
+      }
+
+      const dayMs = 1000 * 60 * 60 * 24;
+      const hourMs = 1000 * 60 * 60;
+      const minMs = 1000 * 60;
+
+      const days = Math.floor(diff / dayMs);
+      diff %= dayMs;
+      const hours = Math.floor(diff / hourMs);
+      diff %= hourMs;
+      const mins = Math.floor(diff / minMs);
+      const secs = Math.floor((diff % minMs) / 1000);
+
+      if(map.d) map.d.textContent = String(days).padStart(2, '0');
+      if(map.h) map.h.textContent = String(hours).padStart(2, '0');
+      if(map.m) map.m.textContent = String(mins).padStart(2, '0');
+      if(map.s) map.s.textContent = String(secs).padStart(2, '0');
+    }
+
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 1000);
+  })();
 
   // TODO: Substitua os hrefs pelos seus links de checkout
   // document.getElementById('btn-adquirir-1').href = 'https://seu-checkout.com/';
