@@ -585,17 +585,6 @@
     </div>
   </header>
 
-  <section class="video-section card">
-    <div aria-label="Espaço para vídeo do YouTube" class="video-frame">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="" title="Apresentação do SABEDORIA ONLINE">
-      </iframe>
-      <div class="video-hint">Insira aqui o seu vídeo do YouTube</div>
-    </div>
-  </section>
-
-
-
-
   <!-- CARDS DE IMAGENS (um do lado do outro) -->
   <section class="image-cards">
     <figure class="image-card"><img alt="Lâmina egípcia com guerreiro e crocodilo" loading="lazy" src="./ChatGPT Image 5 de set. de 2025, 17_42_42.png"/></figure>
@@ -604,13 +593,18 @@
     <figure class="image-card"><img alt="Faraó com inscrições" loading="lazy" src="./ChatGPT Image 5 de set. de 2025, 09_49_56.png"/></figure>
   </section>
 
-
   <!-- Nuvem em volta da frase acima do vídeo -->
   <div class="phrase-cloud">
     <p class="subnote">Um método elegante e completo: do Instagram profissional à criação e venda do seu produto, com automações e IA — passo a passo.</p>
   </div>
 
-
+  <section class="video-section card">
+    <div aria-label="Espaço para vídeo do YouTube" class="video-frame">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="" title="Apresentação do SABEDORIA ONLINE">
+      </iframe>
+      <div class="video-hint">Insira aqui o seu vídeo do YouTube</div>
+    </div>
+  </section>
 
   <!-- CARDS DE IMAGENS (abaixo do vídeo) -->
   <section class="image-cards" style="margin-top: 12px;">
@@ -791,4 +785,49 @@
     if (!container) return;
 
     const map = {
-      d: container.querySelector
+      d: container.querySelector('[data-unit="d"]'),
+      h: container.querySelector('[data-unit="h"]'),
+      m: container.querySelector('[data-unit="m"]'),
+      s: container.querySelector('[data-unit="s"]')
+    };
+
+    const target = new Date('2025-11-20T23:59:59').getTime();
+
+    function updateCountdown(){
+      const now = new Date().getTime();
+      let diff = target - now;
+
+      if (diff <= 0){
+        container.innerHTML = '<div style="width:100%;text-align:center;font-size:14px;color:#b7b7b7;">Promoção encerrada</div>';
+        clearInterval(intervalId);
+        return;
+      }
+
+      const dayMs = 1000 * 60 * 60 * 24;
+      const hourMs = 1000 * 60 * 60;
+      const minMs = 1000 * 60;
+
+      const days = Math.floor(diff / dayMs);
+      diff %= dayMs;
+      const hours = Math.floor(diff / hourMs);
+      diff %= hourMs;
+      const mins = Math.floor(diff / minMs);
+      const secs = Math.floor((diff % minMs) / 1000);
+
+      if(map.d) map.d.textContent = String(days).padStart(2, '0');
+      if(map.h) map.h.textContent = String(hours).padStart(2, '0');
+      if(map.m) map.m.textContent = String(mins).padStart(2, '0');
+      if(map.s) map.s.textContent = String(secs).padStart(2, '0');
+    }
+
+    updateCountdown();
+    const intervalId = setInterval(updateCountdown, 1000);
+  })();
+
+  // TODO: Substitua os hrefs pelos seus links de checkout
+  // document.getElementById('btn-adquirir-1').href = 'https://seu-checkout.com/';
+  // document.getElementById('btn-adquirir-2').href = 'https://seu-checkout.com/';
+  // document.getElementById('btn-adquirir-float').href = 'https://seu-checkout.com/';
+</script>
+</body>
+</html>
