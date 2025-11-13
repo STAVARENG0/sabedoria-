@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
@@ -40,10 +39,13 @@
     .container{
       max-width:1080px;
       margin:0 auto;
-      padding: 4px 22px 44px;}
+      padding: 4px 22px 44px;
+    }
     header.hero{
       text-align:center;
-      padding: 6px 0 4px;}
+      padding: 6px 0 4px;
+    }
+
     .brand{
       display:inline-flex;
       align-items:center;
@@ -55,11 +57,17 @@
       box-shadow:var(--shadow);
       backdrop-filter: blur(6px);
     }
-    .brand .gem{ width:14px;height:14px;border-radius:3px;
+    .brand .gem{
+      width:14px;
+      height:14px;
+      border-radius:3px;
       background:linear-gradient(135deg, var(--gold), var(--gold-2));
       box-shadow:0 0 16px rgba(202,168,106,.5);
     }
-    .brand span{ font-size:13px; color:var(--muted); }
+    .brand span{
+      font-size:13px;
+      color:var(--muted);
+    }
 
     h1.title{
       margin:22px 0 14px;
@@ -83,7 +91,10 @@
       font-weight:600;
       font-size: clamp(16px, 2.2vw, 22px);
     }
-    .subnote{ margin-top:6px; }
+
+    .subnote{
+      margin-top:6px;
+    }
 
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
@@ -92,7 +103,53 @@
       box-shadow:var(--shadow);
     }
 
-    /* CARDES DE IMAGENS (abaixo do subtítulo e acima do vídeo) */
+    /* "Nuvem" em volta das frases */
+    .phrase-cloud{
+      max-width:960px;
+      margin: 8px auto 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(202,168,106,.7);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(230,201,144,.18), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(202,168,106,.16), transparent 55%),
+        rgba(11,11,12,.85);
+      box-shadow: 0 16px 40px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.03);
+      position: relative;
+    }
+    .phrase-cloud::after{
+      content:"";
+      position:absolute;
+      bottom:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:46px;
+      height:20px;
+      border-radius:40px;
+      background:rgba(11,11,12,.9);
+      border:1px solid rgba(202,168,106,.4);
+      box-shadow:0 10px 25px rgba(0,0,0,.7);
+      z-index:-1;
+    }
+    .phrase-cloud .subtitle,
+    .phrase-cloud .subnote{
+      margin:0;
+      text-align:center;
+    }
+
+    /* Ajustes para mobile da nuvem */
+    @media (max-width: 560px){
+      .phrase-cloud{
+        margin: 8px 12px 10px;
+        padding: 10px 14px;
+        border-radius:24px;
+      }
+      .phrase-cloud::after{
+        display:none;
+      }
+    }
+
+    /* CARDS DE IMAGENS (abaixo do subtítulo e acima do vídeo) */
     .image-cards{
       margin:12px 0 12px;
       display:grid;
@@ -106,33 +163,90 @@
       background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
     }
     .image-card img{
-      width:100%; height:100%; display:block; object-fit:cover; aspect-ratio: 1 / 1;
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      aspect-ratio: 1 / 1;
       filter:saturate(1.05);
       transition: transform .25s ease;
     }
-    .image-card:hover img{ transform: scale(1.03); }
+    .image-card:hover img{
+      transform: scale(1.03);
+    }
 
-    @media (max-width: 980px){ .image-cards{ grid-template-columns: repeat(4, 1fr); } }
-    @media (max-width: 680px){ .image-cards{ grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 480px){ .image-cards{ grid-template-columns: repeat(2, 1fr); gap:8px; } }
+    @media (max-width: 980px){
+      .image-cards{
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    @media (max-width: 680px){
+      .image-cards{
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 480px){
+      .image-cards{
+        grid-template-columns: repeat(2, 1fr);
+        gap:8px;
+      }
+    }
 
-    .video-section{ margin:12px auto 28px; padding:18px; }
+    .video-section{
+      margin:12px auto 28px;
+      padding:18px;
+    }
     .video-frame{
-      position:relative; aspect-ratio:16/9; width:100%; overflow:hidden;
+      position:relative;
+      aspect-ratio:16/9;
+      width:100%;
+      overflow:hidden;
       border-radius: calc(var(--radius) - 6px);
       border:1px solid var(--border);
       background:linear-gradient(135deg, rgba(202,168,106,.14), rgba(230,201,144,.10)),
                  linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.0));
     }
-    .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-    .video-hint{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--muted); text-transform:uppercase; letter-spacing:2px; pointer-events:none; }
+    .video-frame iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    .video-hint{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:2px;
+      pointer-events:none;
+    }
 
-    /* LISTA VERTICAL */
-    .learn{ margin:18px 0 10px; padding:24px; }
-    .learn h2{ margin:0 0 12px; font-size:24px; font-weight:700; color:#fff; }
-    ol.learn-list{ list-style:none; margin:0; padding:0; display:block; }
+    /* LISTA VERTICAL - O que você vai aprender */
+    .learn{
+      margin:18px 0 10px;
+      padding:24px;
+    }
+    .learn h2{
+      margin:0 0 12px;
+      font-size:24px;
+      font-weight:700;
+      color:#fff;
+    }
+    ol.learn-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:block;
+    }
     .learn-item{
-      display:flex; gap:14px; align-items:flex-start;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
       padding:16px 14px;
       border:1px solid var(--border);
       border-radius:16px;
@@ -140,35 +254,127 @@
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
       transition:transform .2s ease, border-color .2s ease;
     }
-    .learn-item:hover{ transform:translateY(-2px); border-color:rgba(202,168,106,.35); }
+    .learn-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(202,168,106,.35);
+    }
     .learn-item .num{
-      flex:0 0 34px; height:34px; border-radius:10px;
-      display:inline-flex; align-items:center; justify-content:center;
+      flex:0 0 34px;
+      height:34px;
+      border-radius:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       background:linear-gradient(135deg, var(--gold), var(--gold-2));
-      color:#0a0a0a; font-weight:700; font-size:14px;
+      color:#0a0a0a;
+      font-weight:700;
+      font-size:14px;
       box-shadow: 0 6px 24px rgba(202,168,106,.35);
       margin-top:2px;
     }
-    .learn-item h3{ margin:0 0 6px; font-size:18px; color:#fff; }
-    .learn-item p{ margin:0; color:var(--muted); font-size:14px; }
-    .cta-wrap{ text-align:center; margin:28px auto 0; }
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:16px 26px;
-      font-size:18px; font-weight:700; letter-spacing:.6px;
-      text-decoration:none; color:#0b0b0b;
-      background:linear-gradient(135deg, var(--gold), var(--gold-2));
-      border-radius:999px; box-shadow: 0 12px 40px rgba(202,168,106,.45);
-      border:0; transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    .learn-item h3{
+      margin:0 0 6px;
+      font-size:18px;
+      color:#fff;
     }
-    .cta:hover{ transform: translateY(-2px); box-shadow: 0 20px 50px rgba(202,168,106,.55); filter: brightness(1.04); }
-    .cta:active{ transform: translateY(0); }
-    .badge{ margin-top:14px; font-size:13px; color:var(--muted); display:block; }
-    /* DIFERENCIAIS */
-    .why{ margin-top:34px; padding:24px; }
-    .why h2{ margin:0 0 10px; font-size:24px; font-weight:700; color:#fff; }
-    .why p{ margin:10px 0 0; color:var(--muted); }
-    .why ul{ margin:10px 0 0 18px; color:var(--text); }
+    .learn-item p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .cta-wrap{
+      text-align:center;
+      margin:28px auto 0;
+    }
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:16px 26px;
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:.6px;
+      text-decoration:none;
+      color:#0b0b0b;
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      border-radius:999px;
+      box-shadow: 0 12px 40px rgba(202,168,106,.45);
+      border:0;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+    .cta:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 20px 50px rgba(202,168,106,.55);
+      filter: brightness(1.04);
+    }
+    .cta:active{
+      transform: translateY(0);
+    }
+    .badge{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+      display:block;
+    }
+
+    /* DIFERENCIAIS - agora em lista numerada */
+    .why{
+      margin-top:34px;
+      padding:24px;
+    }
+    .why h2{
+      margin:0 0 12px;
+      font-size:24px;
+      font-weight:700;
+      color:#fff;
+    }
+    .why p.intro{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    ol.why-list{
+      list-style:none;
+      margin:4px 0 0;
+      padding:0;
+    }
+    .why-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:14px 14px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      margin-bottom:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0));
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .why-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(202,168,106,.35);
+    }
+    .why-item .num{
+      flex:0 0 34px;
+      height:34px;
+      border-radius:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg, var(--gold), var(--gold-2));
+      color:#0a0a0a;
+      font-weight:700;
+      font-size:14px;
+      box-shadow: 0 6px 24px rgba(202,168,106,.35);
+      margin-top:2px;
+    }
+    .why-item p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
     /* MODAL FLUTUANTE */
     .floating-modal{
       position: fixed;
@@ -184,129 +390,248 @@
       backdrop-filter: blur(8px);
       animation: floaty 6s ease-in-out infinite;
     }
-    .floating-modal header{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px; }
-    .floating-modal h4{ margin:0; font-size:16px; }
-    .close-float{ appearance:none; border:0; background:transparent; color:var(--muted); font-size:18px; line-height:1; cursor:pointer; }
-    .floating-modal p{ margin:0 0 12px; color:var(--muted); font-size:14px; }
-    .floating-modal .cta{ width:100%; justify-content:center; }
-    @keyframes floaty{ 0%{ transform:translateY(0)} 50%{ transform:translateY(-6px)} 100%{ transform:translateY(0)} }
-    @media (max-width: 560px){ .floating-modal{ left: 12px; right: 12px; width:auto; bottom: 12px; } }
-    footer{ margin-top:56px; padding:24px 0; color:var(--muted); text-align:center; font-size:13px; border-top:1px solid var(--border); }
-    .footer-links a{ color:var(--muted); text-decoration:none; margin:0 8px; }
-    .footer-links a:hover{ color:#fff; }
-  
+    .floating-modal header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:10px;
+    }
+    .floating-modal h4{
+      margin:0;
+      font-size:16px;
+    }
+    .close-float{
+      appearance:none;
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1;
+      cursor:pointer;
+    }
+    .floating-modal p{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .floating-modal .cta{
+      width:100%;
+      justify-content:center;
+    }
+    @keyframes floaty{
+      0%{ transform:translateY(0)}
+      50%{ transform:translateY(-6px)}
+      100%{ transform:translateY(0)}
+    }
+    @media (max-width: 560px){
+      .floating-modal{
+        left: 12px;
+        right: 12px;
+        width:auto;
+        bottom: 12px;
+      }
+    }
+
+    footer{
+      margin-top:56px;
+      padding:24px 0;
+      color:var(--muted);
+      text-align:center;
+      font-size:13px;
+      border-top:1px solid var(--border);
+    }
+    .footer-links a{
+      color:var(--muted);
+      text-decoration:none;
+      margin:0 8px;
+    }
+    .footer-links a:hover{
+      color:#fff;
+    }
+
     /* LOGO PNG no lugar do título */
     .logo-png{
       display:block;
-      margin: 0 auto 6px; /* grudado ao subtítulo */
+      margin: 0 auto 4px;
       max-width: 560px;
       width: 100%;
       height: auto;
-    }</style>
+    }
+</style>
 </head>
 <body>
 <div class="container">
-<header class="hero">
-<!-- Título e subtítulo iguais (mesma fonte e tamanho) -->
-<img alt="Sabedoria Online" class="logo-png" src="./titulo.png"/><p class="subtitle">Como ganhar dinheiro viralizando conteúdo pela internet apenas com o celular.</p>
-<p class="subnote">Um método elegante e completo: do Instagram profissional à criação e venda do seu produto, com automações e IA — passo a passo.</p>
-</header>
-<!-- CARDS DE IMAGENS (um do lado do outro) -->
-<section class="image-cards">
-<figure class="image-card"><img alt="Lâmina egípcia com guerreiro e crocodilo" loading="lazy" src="./ChatGPT Image 5 de set. de 2025, 17_42_42.png"/></figure>
-<figure class="image-card"><img alt="Einstein em estilo egípcio" loading="lazy" src="./ChatGPT Image 1 de nov. de 2025, 11_55_07.png"/></figure>
-<figure class="image-card"><img alt="Girafa de terno em estilo egípcio" loading="lazy" src="./ChatGPT Image 2 de nov. de 2025, 10_36_11.png"/></figure>
-<figure class="image-card"><img alt="Faraó com inscrições" loading="lazy" src="./ChatGPT Image 5 de set. de 2025, 09_49_56.png"/></figure>
-</section>
-<section class="video-section card">
-<div aria-label="Espaço para vídeo do YouTube" class="video-frame">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="" title="Apresentação do SABEDORIA ONLINE">
-</iframe>
-<div class="video-hint">Insira aqui o seu vídeo do YouTube</div>
+  <header class="hero">
+    <!-- Logo + subtítulo dentro da nuvem -->
+    <img alt="Sabedoria Online" class="logo-png" src="./titulo.png"/>
+    <div class="phrase-cloud phrase-cloud--top">
+      <p class="subtitle">Como ganhar dinheiro viralizando conteúdo pela internet apenas com o celular.</p>
+    </div>
+  </header>
+
+  <!-- CARDS DE IMAGENS (um do lado do outro) -->
+  <section class="image-cards">
+    <figure class="image-card"><img alt="Lâmina egípcia com guerreiro e crocodilo" loading="lazy" src="./ChatGPT Image 5 de set. de 2025, 17_42_42.png"/></figure>
+    <figure class="image-card"><img alt="Einstein em estilo egípcio" loading="lazy" src="./ChatGPT Image 1 de nov. de 2025, 11_55_07.png"/></figure>
+    <figure class="image-card"><img alt="Girafa de terno em estilo egípcio" loading="lazy" src="./ChatGPT Image 2 de nov. de 2025, 10_36_11.png"/></figure>
+    <figure class="image-card"><img alt="Faraó com inscrições" loading="lazy" src="./ChatGPT Image 5 de set. de 2025, 09_49_56.png"/></figure>
+  </section>
+
+  <!-- Nuvem em volta da frase acima do vídeo -->
+  <div class="phrase-cloud">
+    <p class="subnote">Um método elegante e completo: do Instagram profissional à criação e venda do seu produto, com automações e IA — passo a passo.</p>
+  </div>
+
+  <section class="video-section card">
+    <div aria-label="Espaço para vídeo do YouTube" class="video-frame">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="" title="Apresentação do SABEDORIA ONLINE">
+      </iframe>
+      <div class="video-hint">Insira aqui o seu vídeo do YouTube</div>
+    </div>
+  </section>
+
+  <!-- CARDS DE IMAGENS (abaixo do vídeo) -->
+  <section class="image-cards" style="margin-top: 12px;">
+    <figure class="image-card"><img alt="Você aprende muito estando sozinho" loading="lazy" src="./file_00000000364c722fa8d7896556ad6221.png"/></figure>
+    <figure class="image-card"><img alt="Você atrai tudo quando para de precisar" loading="lazy" src="./file_00000000b0e4724395e696b53cbed46f.png"/></figure>
+    <figure class="image-card"><img alt="Escolha um medo por dia" loading="lazy" src="./file_00000000cd1c722f80acefd03d8b051e.png"/></figure>
+    <figure class="image-card"><img alt="Você gostou? Siga-nos!" loading="lazy" src="./file_00000000fb4871f48acede22ca969bf8.png"/></figure>
+  </section>
+
+  <!-- DIFERENCIAIS (AGORA EM CIMA DE "O QUE VOCÊ VAI APRENDER") -->
+  <section aria-labelledby="diferente" class="why card">
+    <h2 id="diferente">Por que este curso é diferente</h2>
+    <p class="intro">Com o que você aprende aqui, você pode ganhar dinheiro de várias formas diferentes, não só com o seu próprio produto:</p>
+    <ol class="why-list">
+      <li class="why-item">
+        <span class="num">1</span>
+        <p>Ganhar dinheiro enquanto você dorme, apenas viralizando uma página e vendendo um produto.</p>
+      </li>
+      <li class="why-item">
+        <span class="num">2</span>
+        <p>Vender sites profissionais — desde páginas de vendas e landing pages até e-commerces — para empresas.</p>
+      </li>
+      <li class="why-item">
+        <span class="num">3</span>
+        <p>Atuar produzindo conteúdo para outras páginas, aplicando essa metodologia.</p>
+      </li>
+      <li class="why-item">
+        <span class="num">4</span>
+        <p>Oferecer serviço de social media, criando esse método para pessoas que não entendem muito de tecnologia, mas ambicionam trabalhar online.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- LISTA VERTICAL - O QUE VOCÊ VAI APRENDER -->
+  <section aria-labelledby="o-que-aprender" class="learn card">
+    <h2 id="o-que-aprender">O que você vai aprender</h2>
+    <ol class="learn-list">
+      <li class="learn-item">
+        <span class="num">1</span>
+        <div>
+          <h3>Criar Instagram Profissional</h3>
+          <p>Posicionamento, identidade visual e otimizações para atrair o público certo e transformar atenção em vendas.</p>
+        </div>
+      </li>
+      <li class="learn-item">
+        <span class="num">2</span>
+        <div>
+          <h3>Engenharia de prompt para criar conteúdo</h3>
+          <p>Estruturas de prompts para ideias, roteiros e legendas em escala — com a sua personalidade autêntica.</p>
+        </div>
+      </li>
+      <li class="learn-item">
+        <span class="num">3</span>
+        <div>
+          <h3>Criar um produto do zero</h3>
+          <p>Fazer o seu próprio infoproduto profissional do zero com IA e colocar ele online para vender.</p>
+        </div>
+      </li>
+      <li class="learn-item">
+        <span class="num">4</span>
+        <div>
+          <h3>Colocar o produto para vender</h3>
+          <p>Modelos de oferta, prova social e páginas de checkout para começar a faturar rapidamente.</p>
+        </div>
+      </li>
+      <li class="learn-item">
+        <span class="num">5</span>
+        <div>
+          <h3>Criar sites</h3>
+          <p>Criar sites profissionais do zero, 100% personalizáveis, como os programadores fazem — sem precisar saber programação. Tudo é feito com IA, apenas usando os prompts certos e, por fim, hospedando e colocando o site online.</p>
+        </div>
+      </li>
+      <li class="learn-item">
+        <span class="num">6</span>
+        <div>
+          <h3>Registrar e configurar domínio</h3>
+          <p>Passo a passo para um domínio memorável — para deixar o seu site mais confiável.</p>
+        </div>
+      </li>
+      <li class="learn-item">
+        <span class="num">7</span>
+        <div>
+          <h3>Automatizar vendas pelo Instagram</h3>
+          <p>Funis, respostas automáticas e integrações que vendem por você 24 horas por dia.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="cta-wrap">
+      <a aria-label="Adquirir Sabedoria" class="cta" href="#" id="btn-adquirir-1">ADQUIRIR SABEDORIA</a>
+      <small class="badge">Acesso imediato • Suporte dedicado • Atualizações incluídas</small>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> SABEDORIA ONLINE. Todos os direitos reservados.</div>
+    <div aria-label="Links de rodapé" class="footer-links" role="navigation">
+      <a href="#">Termos</a> •
+      <a href="#">Política de Privacidade</a> •
+      <a href="#">Suporte</a>
+    </div>
+  </footer>
 </div>
-</section>
-<!-- CARDS DE IMAGENS (abaixo do vídeo) -->
-<section class="image-cards" style="margin-top: 12px;">
-<figure class="image-card"><img alt="Você aprende muito estando sozinho" loading="lazy" src="./file_00000000364c722fa8d7896556ad6221.png"/></figure>
-<figure class="image-card"><img alt="Você atrai tudo quando para de precisar" loading="lazy" src="./file_00000000b0e4724395e696b53cbed46f.png"/></figure>
-<figure class="image-card"><img alt="Escolha um medo por dia" loading="lazy" src="./file_00000000cd1c722f80acefd03d8b051e.png"/></figure>
-<figure class="image-card"><img alt="Você gostou? Siga-nos!" loading="lazy" src="./file_00000000fb4871f48acede22ca969bf8.png"/></figure>
-</section>
-<!-- LISTA VERTICAL -->
-<section aria-labelledby="o-que-aprender" class="learn card">
-<h2 id="o-que-aprender">O que você vai aprender</h2>
-<ol class="learn-list">
-<li class="learn-item"><span class="num">1</span><div><h3>Criar Instagram Profissional</h3><p>Posicionamento, identidade visual e otimizações para atrair o público certo e transformar atenção em vendas.</p></div></li>
-<li class="learn-item"><span class="num">2</span><div><h3>Engenharia de prompt para criar conteúdo</h3><p>Estruturas de prompts para ideias, roteiros e legendas em escala — com a sua personalidade autêntica.</p></div></li>
-<li class="learn-item"><span class="num">3</span><div><h3>Criar um produto do zero</h3><p>Do mapeamento de dores à oferta irresistível e diferenciais que te destacam no mercado.</p></div></li>
-<li class="learn-item"><span class="num">4</span><div><h3>Colocar o produto para vender</h3><p>Modelos de oferta, prova social e páginas de checkout para começar a faturar rapidamente.</p></div></li>
-<li class="learn-item"><span class="num">5</span><div><h3>Criar sites</h3><p>Layouts de alta conversão, copy persuasiva e integrações essenciais — com estética de luxo minimalista.</p></div></li>
-<li class="learn-item"><span class="num">6</span><div><h3>Registrar e configurar domínio</h3><p>Passo a passo para um domínio memorável — para deixar o seu site mais confiável.</p></div></li>
-<li class="learn-item"><span class="num">7</span><div><h3>Automatizar vendas pelo Instagram</h3><p>Funis, respostas automáticas e integrações que vendem por você 24 horas por dia.</p></div></li>
-</ol>
-<div class="cta-wrap">
-<a aria-label="Adquirir Sabedoria" class="cta" href="#" id="btn-adquirir-1">ADQUIRIR SABEDORIA</a>
-<small class="badge">Acesso imediato • Suporte dedicado • Atualizações incluídas</small>
-</div>
-</section>
-<!-- DIFERENCIAIS -->
-<section aria-labelledby="diferente" class="why card">
-<h2 id="diferente">Por que este curso é diferente</h2>
-<p>Além de aprender do zero — da criação do Instagram até páginas de vendas — você sai com habilidades que podem te gerar renda de várias formas, inclusive:</p>
-<ul>
-<li>Trabalhar criando <strong>páginas de vendas profissionais</strong> para outras pessoas e empresas;</li>
-<li>Atuar fazendo <strong>conteúdo para outras páginas</strong>, aplicando a mesma metodologia;</li>
-<li>Explorar este conteúdo para <strong>diversas formas de ganhar dinheiro</strong>, do seu próprio produto a serviços para terceiros.</li>
-</ul>
-<div class="cta-wrap" style="margin-top:18px;">
-<a aria-label="Adquirir Sabedoria" class="cta" href="#" id="btn-adquirir-2">ADQUIRIR SABEDORIA</a>
-</div>
-</section>
-<footer>
-<div>© <span id="year"></span> SABEDORIA ONLINE. Todos os direitos reservados.</div>
-<div aria-label="Links de rodapé" class="footer-links" role="navigation">
-<a href="#">Termos</a> •
-        <a href="#">Política de Privacidade</a> •
-        <a href="#">Suporte</a>
-</div>
-</footer>
-</div>
-<!-- MODAL FLUTUANTE COM CTA (texto ajustado: sem mencionar bônus de tráfego pago) -->
+
+<!-- MODAL FLUTUANTE COM CTA -->
 <aside aria-label="Oferta limitada" aria-live="polite" class="floating-modal card" role="dialog">
-<header>
-<h4>Pronto para começar?</h4>
-<button aria-label="Fechar" class="close-float" id="close-float" title="Fechar">×</button>
-</header>
-<p>Garanta seu acesso agora e desbloqueie todas as aulas.</p>
-<a aria-label="Adquirir Sabedoria" class="cta" href="#" id="btn-adquirir-float">ADQUIRIR SABEDORIA</a>
+  <header>
+    <h4>Pronto para começar?</h4>
+    <button aria-label="Fechar" class="close-float" id="close-float" title="Fechar">×</button>
+  </header>
+  <p>Garanta seu acesso agora e desbloqueie todas as aulas.</p>
+  <a aria-label="Adquirir Sabedoria" class="cta" href="#" id="btn-adquirir-float">ADQUIRIR SABEDORIA</a>
 </aside>
+
 <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    const iframe = document.querySelector('.video-frame iframe');
-    const hint = document.querySelector('.video-hint');
-    const observer = new MutationObserver(() => {
-      if (iframe && iframe.getAttribute('src')) { hint.style.display = 'none'; }
-    });
-    observer.observe(iframe, { attributes: true, attributeFilter: ['src'] });
+  const iframe = document.querySelector('.video-frame iframe');
+  const hint = document.querySelector('.video-hint');
+  const observer = new MutationObserver(() => {
+    if (iframe && iframe.getAttribute('src')) {
+      hint.style.display = 'none';
+    }
+  });
+  observer.observe(iframe, { attributes: true, attributeFilter: ['src'] });
 
-    document.getElementById('close-float')?.addEventListener('click', () => {
+  document.getElementById('close-float')?.addEventListener('click', () => {
+    const modal = document.querySelector('.floating-modal');
+    modal?.parentNode?.removeChild(modal);
+    try { sessionStorage.setItem('float_closed', '1'); } catch(e){}
+  });
+
+  try {
+    if (sessionStorage.getItem('float_closed') === '1') {
       const modal = document.querySelector('.floating-modal');
       modal?.parentNode?.removeChild(modal);
-      try { sessionStorage.setItem('float_closed', '1'); } catch(e){}
-    });
+    }
+  } catch(e){}
 
-    try {
-      if (sessionStorage.getItem('float_closed') === '1') {
-        const modal = document.querySelector('.floating-modal');
-        modal?.parentNode?.removeChild(modal);
-      }
-    } catch(e){}
-
-    // TODO: Substitua os hrefs pelos seus links de checkout
-    // document.getElementById('btn-adquirir-1').href = 'https://seu-checkout.com/';
-    // document.getElementById('btn-adquirir-2').href = 'https://seu-checkout.com/';
-    // document.getElementById('btn-adquirir-float').href = 'https://seu-checkout.com/';
-  </script>
+  // TODO: Substitua os hrefs pelos seus links de checkout
+  // document.getElementById('btn-adquirir-1').href = 'https://seu-checkout.com/';
+  // document.getElementById('btn-adquirir-2').href = 'https://seu-checkout.com/';
+  // document.getElementById('btn-adquirir-float').href = 'https://seu-checkout.com/';
+</script>
 </body>
 </html>
