@@ -198,13 +198,20 @@
     }
     .video-frame{
       position:relative;
-      aspect-ratio:16/9;
       width:100%;
+      max-width:900px;
+      margin:0 auto;
       overflow:hidden;
       border-radius: calc(var(--radius) - 6px);
       border:1px solid var(--border);
       background:linear-gradient(135deg, rgba(202,168,106,.14), rgba(230,201,144,.10)),
                  linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.0));
+      aspect-ratio:9/16;
+    }
+    @media (min-width: 768px){
+      .video-frame{
+        aspect-ratio:16/9;
+      }
     }
     .video-frame iframe{
       position:absolute;
@@ -604,7 +611,7 @@
         src="https://www.dropbox.com/scl/fi/mstvrr4j01cerkxmz5pnr/IMG_0766.mp4?rlkey=r401fywbqlyffc9q71sq631fd&st=mws4xu5e&raw=1"
         title="Apresentação do SABEDORIA ONLINE">
       </iframe>
-      <div class="video-hint">Carregando o vídeo...</div>
+      
     </div>
   </section>
 
@@ -763,14 +770,7 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const iframe = document.querySelector('.video-frame iframe');
-  const hint = document.querySelector('.video-hint');
-  const observer = new MutationObserver(() => {
-    if (iframe && iframe.getAttribute('src')) {
-      hint.style.display = 'none';
-    }
-  });
-  observer.observe(iframe, { attributes: true, attributeFilter: ['src'] });
+  // Vídeo exibido diretamente no iframe, sem mensagem de carregamento.
 
   document.getElementById('close-float')?.addEventListener('click', () => {
     const modal = document.querySelector('.floating-modal');
