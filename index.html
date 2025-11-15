@@ -206,15 +206,12 @@
       background:linear-gradient(135deg, rgba(202,168,106,.14), rgba(230,201,144,.10)),
                  linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.0));
     }
-    .video-frame iframe,
-    .video-frame video,
-    .video-player{
+    .video-frame iframe{
+      position:absolute;
+      inset:0;
       width:100%;
-      max-width:100%;
-      aspect-ratio:16/9;
-      height:auto;
+      height:100%;
       border:0;
-      display:block;
     }
     .video-hint{
       position:absolute;
@@ -602,13 +599,19 @@
   </div>
 
   <section class="video-section card">
-  <div class="video-frame" aria-label="Vídeo de apresentação">
-    <video controls class="video-player">
-      <source src="https://www.dropbox.com/scl/fi/mstvrr4j01cerkxmz5pnr/IMG_0766.mp4?rlkey=r401fywbqlyffc9q71sq631fd&st=mws4xu5e&raw=1" type="video/mp4">
-      Seu navegador não suporta a reprodução de vídeo.
-    </video>
+    <div aria-label="Vídeo de apresentação" class="video-frame">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""
+        src="https://www.dropbox.com/scl/fi/mstvrr4j01cerkxmz5pnr/IMG_0766.mp4?rlkey=r401fywbqlyffc9q71sq631fd&st=mws4xu5e&raw=1"
+        title="Apresentação do SABEDORIA ONLINE">
+      </iframe>
+      <div class="video-hint">Carregando o vídeo...</div>
+    </div>
+  </section>
+
+  <!-- Frase abaixo do vídeo -->
+  <div class="phrase-cloud phrase-cloud--after-video">
+    <p class="subnote">Custa menos que um fim de semana de rolê e festas, e dedicando apenas 30 minutos por dia você pode mudar o resto da sua vida!</p>
   </div>
-</section>
 
   <!-- CARDS DE IMAGENS (abaixo do vídeo) -->
   <section class="image-cards" style="margin-top: 12px;">
@@ -620,7 +623,7 @@
 
   <!-- DIFERENCIAIS (AGORA EM CIMA DE "O QUE VOCÊ VAI APRENDER") -->
   <section aria-labelledby="diferente" class="why card">
-    <h2 id="diferente">Por que este curso é diferente</h2>
+    <h2 id="diferente">Maneiras de monetizar com esse método</h2>
     <p class="intro">Com o que você aprende aqui, você pode ganhar dinheiro de várias formas diferentes, não só com o seu próprio produto:</p>
     <ol class="why-list">
       <li class="why-item">
@@ -759,6 +762,15 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const iframe = document.querySelector('.video-frame iframe');
+  const hint = document.querySelector('.video-hint');
+  const observer = new MutationObserver(() => {
+    if (iframe && iframe.getAttribute('src')) {
+      hint.style.display = 'none';
+    }
+  });
+  observer.observe(iframe, { attributes: true, attributeFilter: ['src'] });
 
   document.getElementById('close-float')?.addEventListener('click', () => {
     const modal = document.querySelector('.floating-modal');
