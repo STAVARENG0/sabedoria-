@@ -206,16 +206,12 @@
       background:linear-gradient(135deg, rgba(202,168,106,.14), rgba(230,201,144,.10)),
                  linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.0));
     }
-    .video-frame iframe,
-    .video-frame video,
-    .video-player{
+    .video-frame iframe{
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
       border:0;
-      display:block;
-      object-fit:cover;
     }
     .video-hint{
       position:absolute;
@@ -603,22 +599,17 @@
   </div>
 
   <section class="video-section card">
-    <div class="video-frame" aria-label="Espaço para vídeo do YouTube">
-      <iframe
-        class="video-player"
-        src="https://www.youtube.com/embed/2aH-yXiwwQA"
-        title="Apresentação do SABEDORIA ONLINE"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <!-- Frase abaixo do vídeo -->
-  <div class="phrase-cloud phrase-cloud--after-video">
-    <p class="subnote">Custa menos que um fim de semana de rolê e festas, e dedicando apenas 30 minutos por dia você pode mudar o resto da sua vida!</p>
+  <div class="video-frame" aria-label="Vídeo de apresentação">
+    <iframe
+      class="video-player"
+      src="https://drive.google.com/file/d/1LBvxhZbgu7DB1KWnjOgv-11xb1_s6PAw/preview"
+      title="Apresentação do SABEDORIA ONLINE"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
   </div>
+</section>
 
   <!-- CARDS DE IMAGENS (abaixo do vídeo) -->
   <section class="image-cards" style="margin-top: 12px;">
@@ -630,7 +621,7 @@
 
   <!-- DIFERENCIAIS (AGORA EM CIMA DE "O QUE VOCÊ VAI APRENDER") -->
   <section aria-labelledby="diferente" class="why card">
-    <h2 id="diferente">Maneiras de monetizar com esse método</h2>
+    <h2 id="diferente">Por que este curso é diferente</h2>
     <p class="intro">Com o que você aprende aqui, você pode ganhar dinheiro de várias formas diferentes, não só com o seu próprio produto:</p>
     <ol class="why-list">
       <li class="why-item">
