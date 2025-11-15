@@ -203,8 +203,7 @@
       overflow:hidden;
       border-radius: calc(var(--radius) - 6px);
       border:1px solid var(--border);
-      background:linear-gradient(135deg, rgba(202,168,106,.14), rgba(230,201,144,.10)),
-                 linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.0));
+      background:#000;
     }
     .video-frame iframe,
     .video-frame video,
@@ -603,7 +602,7 @@
 
   <section class="video-section card">
   <div class="video-frame" aria-label="Vídeo de apresentação">
-    <video controls class="video-player">
+    <video controls class="video-player" playsinline webkit-playsinline preload="metadata">
       <source src="https://www.dropbox.com/scl/fi/mstvrr4j01cerkxmz5pnr/IMG_0766.mp4?rlkey=r401fywbqlyffc9q71sq631fd&st=mws4xu5e&raw=1" type="video/mp4">
       Seu navegador não suporta a reprodução de vídeo.
     </video>
