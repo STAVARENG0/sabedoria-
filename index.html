@@ -611,8 +611,7 @@
         src="https://www.dropbox.com/scl/fi/mstvrr4j01cerkxmz5pnr/IMG_0766.mp4?rlkey=r401fywbqlyffc9q71sq631fd&st=mws4xu5e&raw=1"
         title="Apresentação do SABEDORIA ONLINE">
       </iframe>
-      
-    </div>
+          </div>
   </section>
 
   <!-- Frase abaixo do vídeo -->
@@ -770,7 +769,14 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Vídeo exibido diretamente no iframe, sem mensagem de carregamento.
+  const iframe = document.querySelector('.video-frame iframe');
+  const hint = document.querySelector('.video-hint');
+  const observer = new MutationObserver(() => {
+    if (iframe && iframe.getAttribute('src')) {
+      hint.style.display = 'none';
+    }
+  });
+  observer.observe(iframe, { attributes: true, attributeFilter: ['src'] });
 
   document.getElementById('close-float')?.addEventListener('click', () => {
     const modal = document.querySelector('.floating-modal');
